@@ -11,9 +11,9 @@ public class Main {
         int count = 0;
         while(!testVictory(state, 1) && !testVictory(state, 2)){
             Scanner clavier = new Scanner(System.in);
-            System.out.println("Entrez x (entre 1 et 11)\n");
+            System.out.println("Entrez x (entre 1 et 11)");
             int x = clavier.nextInt() - 1;
-            System.out.println("Entrez y (entre 1 et 11)\n");
+            System.out.println("Entrez y (entre 1 et 11)");
             int y = clavier.nextInt() - 1;
             state[x][y] = 1;
             move = new Move(x,y);
