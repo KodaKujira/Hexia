@@ -25,7 +25,7 @@ public class Mcts_IA {
         }
         long start = System.nanoTime();
         long timer = System.nanoTime() - start;
-        while (timer < 25*Math.pow(10,9)){
+        while (timer < 5*Math.pow(10,9)){ //Temps de reflexion en seconde (ici 5)
             timer = System.nanoTime() - start;
             this.root.traversialR();
         }
