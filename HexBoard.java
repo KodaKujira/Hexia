@@ -10,13 +10,21 @@ import javax.swing.JPanel;
 public class HexBoard extends JPanel {
 
     private static final int diameter = 40;
-    private static final int boardSize = 11;
+    public static final int boardSize = 11;
     private static final int radius = diameter / 2;
     private static Mcts_IA playerRed;
 
     private final Color[][] colors = new Color[boardSize][boardSize];
 
     public HexBoard() {
+        if (playerRed == null) {
+            playerRed = new Mcts_IA("JMM", 1, 2, 2);
+            Move firstMove = playerRed.searchMove(null);
+            int col = firstMove.x;
+            int row = firstMove.y;
+            colors[col][row] = Color.BLUE;
+            repaint();
+        }
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -26,11 +34,11 @@ public class HexBoard extends JPanel {
                 int row = y / (diameter);
                 int col = (x - row * radius) / (diameter);
                 System.out.println("Row: " + row + ", Col: " + col);
-                colors[col][row] = Color.BLUE;
+                colors[col][row] = Color.RED;
                 Move move = playerRed.searchMove(new Move(col, row));
                 col = move.x;
                 row = move.y;
-                colors[col][row] = Color.RED;
+                colors[col][row] = Color.BLUE;
                 repaint();
             }
         });
@@ -72,6 +80,5 @@ public class HexBoard extends JPanel {
         frame.setSize(750, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        playerRed = new Mcts_IA("JMM", 2);
     }
 }
